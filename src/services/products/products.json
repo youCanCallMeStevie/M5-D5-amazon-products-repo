@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "_id": "1",
+    "name": "app test 1",
+    "description": "somthing longer",
+    "brand": "nokia",
+    "imageUrl": "",
+    "price": 100,
+    "category": "smartphones",
+    "createdAt": "2019-07-19T09:32:10.535Z",
+    "updatedAt": "2019-07-19T09:32:10.535Z"
+  },
+  {
+    "_id": "2",
+    "name": "app test 2",
+    "description": "somthing longer",
+    "brand": "nokia",
+    "imageUrl": "",
+    "price": 100,
+    "category": "smartphones",
+    "createdAt": "2019-07-19T09:32:10.535Z",
+    "updatedAt": "2019-07-19T09:32:10.535Z"
+  }
+]
