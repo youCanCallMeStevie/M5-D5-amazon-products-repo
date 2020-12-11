@@ -13,6 +13,8 @@ const productsPhotoFilePath = path.join(
   __dirname,
   "../../../public/img/products"
 );
+const productsFilePath = path.join(__dirname, "products.json");
+const reviewsFilePath = path.join(__dirname, "reviews/reviews.json");
 
 router.get("/:id", async (req, res, next) => {
   try {
@@ -114,6 +116,29 @@ router.put("/:id", async (req, res, next) => {
     await writeDB(productsFilePath, newDb);
 
     res.send({ id: modifiedProduct.ID });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/:id/reviews", (req, res) => {
+  try {
+    const products = readDB("products.json");
+
+    const product = products.filter((product) => product._id === req.params.id);
+    if (product.length > 0) {
+      const reviews = readDB(reviewsFilePath.json);
+      const reviewArray = reviews.filter(
+        (review) => product._id === review.elementId
+      );
+      if (reviewArray.length > 0) {
+        res.send(product, reviewArray);
+      }
+    } else {
+      const err = new Error();
+      err.httpStatusCode = 404;
+      next(err);
+    }
   } catch (error) {
     next(error);
   }
