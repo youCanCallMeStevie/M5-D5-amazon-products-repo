@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "comment": "posting my review",
+    "rate": 1,
+    "elementId": "2",
+    "createdAt": "2020-12-11T13:44:01.247Z",
+    "_id": "c9lkxqnrkikbn3s0"
+  },
+  {
+    "comment": "more reviews",
+    "rate": 5,
+    "elementId": "1",
+    "createdAt": "2020-12-11T13:44:28.571Z",
+    "_id": "c9lkxqo7kikbnov1"
+  },
+  {
+    "comment": "more reviews",
+    "rate": 1,
+    "elementId": "1",
+    "createdAt": "2020-12-11T13:44:35.968Z",
+    "_id": "c9lkxqomkikbnukh"
+  }
+]
