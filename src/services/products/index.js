@@ -59,13 +59,14 @@ router.get("/", async (req, res, next) => {
 
 router.post("/:id/upload", upload.single("avatar"), async (req, res, next) => {
   try {
-    console.log(req.file);
-
-    await writeDB(
+   await writeDB(
       path.join(productsPhotoFilePath, `${req.params.id}.jpeg`),
       req.file.buffer
     );
     res.send("ok");
+  
+
+
   } catch (error) {
     console.log(error);
     next(error);
@@ -95,6 +96,7 @@ router.post(
           ...req.body,
           _id: uniqid(),
           modifiedAt: new Date(),
+          // imgUrl: `images/${_id}.jpeg`
         };
 
         productsDB.push(newProduct);

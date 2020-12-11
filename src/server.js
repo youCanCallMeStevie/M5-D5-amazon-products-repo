@@ -24,7 +24,7 @@ const loggerMiddleware = (req, res, next) => {
 
 server.use(cors());
 server.use(express.json());
-server.use("images", express.static(path.join(__dirname, "../public/img")));
+server.use("/images", express.static(path.join(__dirname, "../public/img")));
 
 server.use("/products", productsRoutes);
 server.use("/reviews", reviewsRoutes);
