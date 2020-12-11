@@ -9,17 +9,22 @@ const { check, validationResult } = require("express-validator");
 const { readDB, writeDB } = require("../../lib/utilities");
 const upload = multer({});
 
+
+
 const reviewFilePath = path.join(__dirname, "reviews.json");
 const reviewAsString = fs.readFileSync(reviewFilePath).toString();
 const reviewsArray = JSON.parse(reviewAsString);
 
 const productsFilePath = path.join(__dirname, "../products/products.json");
 
+
 // "_id": "123455", //SERVER GENERATED
 // "comment": "A good book but definitely I don't like many parts of the plot", //REQUIRED
 // "rate": 3, //REQUIRED, max 5
 // "elementId": "5d318e1a8541744830bef139", //REQUIRED
 // "createdAt": "2019-08-01T12:46:45.895Z" // SERVER GENERATED
+
+
 
 //1. Get All reviews
 router.get("/", async (req, res, next) => {
@@ -138,5 +143,6 @@ router.delete("/:id", async (req, res, next) => {
     next(error);
   }
 });
+
 
 module.exports = router;
