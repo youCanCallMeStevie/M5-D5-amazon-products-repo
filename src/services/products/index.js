@@ -61,8 +61,8 @@ router.post("/:id/upload", upload.single("avatar"), async (req, res, next) => {
   try {
     console.log(req.file);
 
-    await writeFile(
-      path.join(productsPhotoFilePath, `${req.params.id}.jpg`),
+    await writeDB(
+      path.join(productsPhotoFilePath, `${req.params.id}.jpeg`),
       req.file.buffer
     );
     res.send("ok");
