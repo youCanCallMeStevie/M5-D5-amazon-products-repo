@@ -9,7 +9,6 @@ const { check, validationResult } = require("express-validator");
 const { readDB, writeDB } = require("../../lib/utilities");
 const upload = multer({});
 
-
 const productsPhotoFilePath = path.join(
   __dirname,
   "../../../public/img/products"
@@ -20,3 +19,5 @@ const productsPhotoFilePath = path.join(
 // "rate": 3, //REQUIRED, max 5
 // "elementId": "5d318e1a8541744830bef139", //REQUIRED
 // "createdAt": "2019-08-01T12:46:45.895Z" // SERVER GENERATED
+
+module.exports = router;
