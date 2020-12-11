@@ -15,10 +15,10 @@ const {
 const server = express();
 const port = process.env.PORT || 3000; //update your .env to call the port number you are working on
 
-// const loggerMiddleware = (req, res, next) => {
-//   console.log(`Logged ${req.url} ${req.method} -- ${new Date()}`)
-//   next()
-// }
+const loggerMiddleware = (req, res, next) => {
+  console.log(`Logged ${req.url} ${req.method} -- ${new Date()}`)
+  next()
+}
 
 //Middlewares
 

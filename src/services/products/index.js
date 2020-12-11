@@ -176,3 +176,5 @@ module.exports = router;
 //     "category": "smartphones"
 //     "createdAt": "2019-07-19T09:32:10.535Z", //SERVER GENERATED
 //     "updatedAt": "2019-07-19T09:32:10.535Z", //SERVER GENERATED
+
+module.exports = router;
