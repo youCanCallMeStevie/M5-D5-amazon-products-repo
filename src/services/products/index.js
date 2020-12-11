@@ -9,10 +9,7 @@ const { check, validationResult } = require("express-validator");
 const { readDB, writeDB } = require("../../lib/utilities");
 const upload = multer({});
 
-const productsPhotoFilePath = path.join(
-  __dirname,
-  "../../../public/img/products"
-);
+const productsPhotoFilePath = path.join(__dirname, "../../../public/img");
 const productsFilePath = path.join(__dirname, "products.json");
 const reviewsFilePath = path.join(__dirname, "reviews/reviews.json");
 
@@ -37,17 +34,40 @@ router.get("/:id", async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   try {
     const productsDB = await readDB(productsFilePath);
-    if (req.query && req.query.name) {
+    if (req.query && req.query.id) {
       const filteredProducts = productsDB.filter(
         (product) =>
-          product.hasOwnProperty("name") &&
-          product.name.toLowerCase() === req.query.name.toLowerCase()
+          product.hasOwnProperty("_id") && product._id === req.query.id
       );
       res.send(filteredProducts);
     } else {
       res.send(productsDB);
     }
   } catch (error) {
+    next(error);
+  }
+});
+
+/**
+ *  UPLOAD IMG WITH PRODUCT ID AND FILE NAME SHOULD BE ID
+ *  URL = HTTP://LOCALHOST:PORT/IMAGES/FILENAME
+ *  FIND PRODUCT BY ID
+ *  UPDATE IMAGE FIELD ON PRODUCT
+ *
+ *
+ */
+
+router.post("/:id/upload", upload.single("avatar"), async (req, res, next) => {
+  try {
+    console.log(req.file);
+
+    await writeFile(
+      path.join(productsPhotoFilePath, `${req.params.id}.jpg`),
+      req.file.buffer
+    );
+    res.send("ok");
+  } catch (error) {
+    console.log(error);
     next(error);
   }
 });
@@ -73,7 +93,7 @@ router.post(
         const productsDB = await readDB(productsFilePath);
         const newProduct = {
           ...req.body,
-          ID: uniqid(),
+          _id: uniqid(),
           modifiedAt: new Date(),
         };
 
@@ -81,9 +101,10 @@ router.post(
 
         await writeDB(productsFilePath, productsDB);
 
-        res.status(201).send({ id: newProduct.ID });
+        res.status(201).send({ id: newProduct._id });
       }
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }

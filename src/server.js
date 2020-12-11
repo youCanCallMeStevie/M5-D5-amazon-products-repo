@@ -24,7 +24,7 @@ const port = process.env.PORT || 3000; //update your .env to call the port numbe
 
 server.use(cors());
 server.use(express.json());
-server.use(express.static(path.join(__dirname, "../public/img")));
+server.use("images", express.static(path.join(__dirname, "../public/img")));
 
 server.use("/products", productsRoutes);
 server.use("/reviews", reviewsRoutes);
